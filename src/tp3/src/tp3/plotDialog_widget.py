@@ -6,6 +6,7 @@
 from python_qt_binding import QtCore, QtGui
 from python_qt_binding.QtWidgets import QDialog, QTabWidget, QVBoxLayout
 from rawdata_tab import RawDataTab
+# from Rosbag_Analysis import Rosbag_Analysis
 
 class PlotDialogWidget(QDialog):
     
@@ -18,10 +19,26 @@ class PlotDialogWidget(QDialog):
         
         # TabWidget
         self.tabWidget = QTabWidget()
-        self.rawDataTab = RawDataTab(bagFiles)
+        self.rawDataTab = RawDataTab()
         self.tabWidget.addTab(self.rawDataTab, "Raw Data")
         self.layout.addWidget(self.tabWidget)
         
+                # init the start button
+        startBtn = QPushButton("Start")
+        startBtn.clicked.connect(self.getPlotData)
+        self.layout.addWidget(startBtn)
+        
         self.setLayout(self.layout)
+        
+    def getPlotData(self):
+        # is called when start button is clicked
+        bagfile = self.bagFiles[rawDataTab.selectedBag]
+        obj_id = 1
+        category = "geometric"
+        attribute = "x"
+#         plotData = RosbagAnalysis.getRawData(bagfile, obj_id, category, attribute)
+        
+        # todo: emit signal with data
+        # close dialog
         
 

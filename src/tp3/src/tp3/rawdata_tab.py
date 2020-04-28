@@ -11,15 +11,13 @@ from python_qt_binding.QtWidgets import (QWidget, QGridLayout,
 
 from valueSelector_widget import ValueSelectorWidget
 from id_selector_widget import IDSelectorWidget
-from Rosbag_Analysis import Rosbag_Analysis
 
 class RawDataTab(QWidget):
     
-    def __init__(self, bagFiles):
+    def __init__(self):
         super(RawDataTab, self).__init__()
         self.layout = QGridLayout()
-        
-        self.bagFiles = bagFiles
+    
         self.selectedBag = 0
         self.selectedValue = ('', '') # contains value as a tupel like ('<message>', '<value>')      
         
@@ -30,11 +28,6 @@ class RawDataTab(QWidget):
         self.layout.addWidget(self.valueWidget, 1, 2)
         self.idSelector = IDSelectorWidget()
         self.layout.addWidget(self.idSelector, 1, 3)
-        
-        # init the start button
-        startBtn = QPushButton("Start")
-        startBtn.clicked.connect(self.getPlotData)
-        self.layout.addWidget(startBtn, 2, 3)
         
         self.setLayout(self.layout)
         
@@ -63,16 +56,6 @@ class RawDataTab(QWidget):
     def btn2Clicked(self):
         self.selectedBag = 2
               
-    def getPlotData(self):
-        # is called when start button is clicked
-        bagfile = self.bagFiles[self.selectedBag]
-        obj_id = 1
-        category = "geometric"
-        attribute = "x"
-        plotData = RosbagAnalysis.getRawData(bagfile, obj_id, category, attribute)
-        
-        # todo: emit signal with data
-        # close dialog
         
         
         
