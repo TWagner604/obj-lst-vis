@@ -9,7 +9,7 @@ from rawdata_tab import RawDataTab
 
 class PlotDialogWidget(QDialog):
     
-    def __init__(self):
+    def __init__(self, bagFiles):
         super(PlotDialogWidget, self).__init__()
         self.setWindowTitle("Add new Plot")
         # self.setWindowModality(Qt.ApplicationModal)
@@ -18,7 +18,7 @@ class PlotDialogWidget(QDialog):
         
         # TabWidget
         self.tabWidget = QTabWidget()
-        self.rawDataTab = RawDataTab()
+        self.rawDataTab = RawDataTab(bagFiles)
         self.tabWidget.addTab(self.rawDataTab, "Raw Data")
         self.layout.addWidget(self.tabWidget)
         

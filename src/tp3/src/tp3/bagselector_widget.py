@@ -12,7 +12,7 @@ class BagSelectorWidget(QWidget):
         self.bag1Btn.clicked.connect(self.btn1_clicked)
         self.bag2Edit = QLineEdit()
         self.bag2Btn = QPushButton("bag file 2")
-        # self.bag2Btn.clicked.connect(btn2_clicked)
+        self.bag2Btn.clicked.connect(self.btn2_clicked)
         
         self.__fileName1 = ""
         self.__fileName2 = ""
@@ -26,5 +26,15 @@ class BagSelectorWidget(QWidget):
 
     def btn1_clicked(self):
         cwd = os.getcwd() # current working directory
-        self.__fileName1 = QFileDialog.getOpenFileName(self, 'Select file', cwd, "Bag files (*.bag)")
-        self.bag1Edit.setText(self.__fileName1[0]) # print filename to lineEdit
+        fileTupel = QFileDialog.getOpenFileName(self, 'Select file', cwd, "Bag files (*.bag)")
+        __fileName1 = fileTupel[0]
+        self.bag1Edit.setText(self.__fileName1) # print filename to lineEdit
+        
+    def btn2_clicked(self):
+        cwd = os.getcwd() # current working directory
+        fileTupel = QFileDialog.getOpenFileName(self, 'Select file', cwd, "Bag files (*.bag)")
+        __fileName2 = fileTupel[0]
+        self.bag2Edit.setText(self.__fileName2) # print filename to lineEdit
+        
+    def getBagFiles(self):
+        return [self.__fileName1, self.__fileName2]

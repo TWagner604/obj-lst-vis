@@ -24,8 +24,10 @@ class PlotWidget(QWidget):
         besides the matplot it contains a button to add new plots
         and a Slider to adjust the time or the objectID
     '''
-    def __init__(self):
+    def __init__(self, bagFiles):
         super(PlotWidget, self).__init__()
+        self.bagFiles = bagFiles
+        
         self.layout = QVBoxLayout()
         self.__addPlotBtn = QPushButton("Add new Plot")
         self.__addPlotBtn.clicked.connect(self.openDialog)
@@ -47,7 +49,7 @@ class PlotWidget(QWidget):
         '''
             opens new dialog widget to determine the information required for a new plot
         '''
-        plotDialog = PlotDialogWidget()
+        plotDialog = PlotDialogWidget(self.bagFiles)
         plotDialog.exec_()
         
         
