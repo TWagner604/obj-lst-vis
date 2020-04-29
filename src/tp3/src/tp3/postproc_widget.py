@@ -18,6 +18,7 @@ class PostProcMainWidget(QWidget):
 
         self.bagSelector = BagSelectorWidget()
         self.bagFiles = self.bagSelector.getBagFiles()
+	print(self.bagFiles)
         self.plot = PlotWidget(self.bagFiles)
 
         self.layout = QGridLayout()

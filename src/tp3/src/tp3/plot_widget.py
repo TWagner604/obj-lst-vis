@@ -41,6 +41,7 @@ class PlotWidget(QWidget):
     def plot(self, plotData):    
         t = plotData[0]
         values = plotData[1]
+	# self.ax.set_xlim([np.min(t), np.max(t)])
         self.ax.plot(t, values)
         self.ax.figure.canvas.draw()
         

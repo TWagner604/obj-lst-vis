@@ -27,13 +27,13 @@ class BagSelectorWidget(QWidget):
     def btn1_clicked(self):
         cwd = os.getcwd() # current working directory
         fileTupel = QFileDialog.getOpenFileName(self, 'Select file', cwd, "Bag files (*.bag)")
-        __fileName1 = fileTupel[0]
+        self.__fileName1 = fileTupel[0]
         self.bag1Edit.setText(self.__fileName1) # print filename to lineEdit
         
     def btn2_clicked(self):
         cwd = os.getcwd() # current working directory
         fileTupel = QFileDialog.getOpenFileName(self, 'Select file', cwd, "Bag files (*.bag)")
-        __fileName2 = fileTupel[0]
+        self.__fileName2 = fileTupel[0]
         self.bag2Edit.setText(self.__fileName2) # print filename to lineEdit
         
     def getBagFiles(self):

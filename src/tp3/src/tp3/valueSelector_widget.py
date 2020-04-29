@@ -3,9 +3,6 @@
     here the user can select which of the values 
     he wants to plot
 '''
-
-from pathlib import Path
-
 from python_qt_binding import QtCore, QtGui
 from python_qt_binding.QtWidgets import *
 from object_list_msg import obj_list_msg
