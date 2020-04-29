@@ -37,19 +37,19 @@ class PlotWidget(QWidget):
         self.layout.addWidget(canvas)
         self.setLayout(self.layout)
         self.ax = canvas.figure.subplots()
-#         self.plot()
         
-#     def plot(self):    
-#         t = np.linspace(0, 10, 101)
-#         self.ax.set_ylim(-1.1, 1.1)
-#         self.ax.plot(t, np.sin(t))
-#         self.ax.figure.canvas.draw()
+    def plot(self, plotData):    
+        t = plotData[0]
+        values = plotData[1]
+        self.ax.plot(t, values)
+        self.ax.figure.canvas.draw()
         
     def openDialog(self):
         '''
             opens new dialog widget to determine the information required for a new plot
         '''
         plotDialog = PlotDialogWidget(self.bagFiles)
+        plotDialog.newPlotData.connect(self.plot)
         plotDialog.exec_()
         
         
