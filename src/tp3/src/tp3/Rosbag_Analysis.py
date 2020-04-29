@@ -26,8 +26,8 @@ class Rosbag_Analysis:
             bag.read_messages()
             
             array_values.append(getattr(getattr(msg.obj_list[obj_id], category), attribute))
-            array_timestamps.append((t-startTime) / 1000000)  #appends timestamp in milli seconds
-         
+            #array_timestamps.append((t-startTime) / 1000000)  #appends timestamp in milli seconds
+            array_timestamps.append(counter)
         #print('Number of sequences: ')     #sequence = count of frames
         #print(counter)
         

@@ -38,7 +38,7 @@ class PlotDialogWidget(QDialog):
     def getPlotData(self):
         # is called when start button is clicked
         # bagfile = self.bagFiles[self.rawDataTab.selectedBag]
-	bagfile = "/home/max/obj-lst-vis/src/tp3/bagfiles/Objektliste.bag"
+	bagfile = "/home/max/obj-lst-vis/src/tp3/bagfiles/2020-04-24-18-36-14.bag"
 	obj_id = 1
         category = "geometric"
         attribute = "x"
