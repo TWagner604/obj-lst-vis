@@ -11,8 +11,9 @@ from python_qt_binding.QtWidgets import *
 
 class IDSelectorWidget(QGroupBox):
     
-    def __init__(self):
+    def __init__(self, parent=None):
         super(IDSelectorWidget, self).__init__()
+        self.parent = parent
         self.setTitle('3.Select ObjectID')
         layout = QVBoxLayout()
         

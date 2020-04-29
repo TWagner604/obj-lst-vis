@@ -14,8 +14,9 @@ from id_selector_widget import IDSelectorWidget
 
 class RawDataTab(QWidget):
     
-    def __init__(self):
+    def __init__(self, parent=None):
         super(RawDataTab, self).__init__()
+        self.parent = parent
         self.layout = QGridLayout()
     
         self.selectedBag = 0
@@ -30,8 +31,6 @@ class RawDataTab(QWidget):
         self.layout.addWidget(self.idSelector, 1, 3)
         
         self.setLayout(self.layout)
-        
-        self.newPlotData()
         
     def initBagSelector(self):
         '''

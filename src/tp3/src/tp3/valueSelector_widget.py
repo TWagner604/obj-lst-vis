@@ -14,8 +14,9 @@ from object_list_msg import obj_list_msg
 
 class ValueSelectorWidget(QGroupBox):
     
-    def __init__(self):
+    def __init__(self, parent=None):
         super(ValueSelectorWidget, self).__init__()
+        self.parent = parent
         self.__selectedCategory = ""
         self.__selectedAttribute = ""
         
