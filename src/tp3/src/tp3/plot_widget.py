@@ -3,18 +3,15 @@ import numpy as np
 
 from python_qt_binding import QtCore, QtGui
 from python_qt_binding.QtWidgets import QWidget, QLineEdit, QPushButton, QVBoxLayout
-from plotDialog_widget import PlotDialogWidget
 
 from matplotlib.backends.qt_compat import QtCore, QtWidgets, is_pyqt5
 if is_pyqt5():
     from matplotlib.backends.backend_qt5agg import (
-        FigureCanvas
-        #, NavigationToolbar2QT as NavigationToolbar
+        FigureCanvas, NavigationToolbar2QT as NavigationToolbar
         )
 else:
     from matplotlib.backends.backend_qt4agg import (
-        FigureCanvas
-        #, NavigationToolbar2QT as NavigationToolbar
+        FigureCanvas, NavigationToolbar2QT as NavigationToolbar
         )
 from matplotlib.figure import Figure
 
@@ -29,11 +26,10 @@ class PlotWidget(QWidget):
         self.bagFiles = bagFiles
         
         self.layout = QVBoxLayout()
-        self.__addPlotBtn = QPushButton("Add new Plot")
-        self.__addPlotBtn.clicked.connect(self.openDialog)
-        self.layout.addWidget(self.__addPlotBtn)
         
         canvas = FigureCanvas(Figure(figsize=(5, 3)))
+        toolbar = NavigationToolbar(canvas, self)
+        self.layout.addWidget(toolbar)
         self.layout.addWidget(canvas)
         self.setLayout(self.layout)
         self.ax = canvas.figure.subplots()
@@ -41,17 +37,11 @@ class PlotWidget(QWidget):
     def plot(self, plotData):    
         t = plotData[0]
         values = plotData[1]
-	# self.ax.set_xlim([np.min(t), np.max(t)])
+        # self.ax.set_xlim([np.min(t), np.max(t)])
         self.ax.plot(t, values)
         self.ax.figure.canvas.draw()
         
-    def openDialog(self):
-        '''
-            opens new dialog widget to determine the information required for a new plot
-        '''
-        plotDialog = PlotDialogWidget(self.bagFiles)
-        plotDialog.newPlotData.connect(self.plot)
-        plotDialog.exec_()
+    
         
         
         

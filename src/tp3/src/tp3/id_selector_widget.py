@@ -24,3 +24,7 @@ class IDSelectorWidget(QGroupBox):
         layout.addWidget(self.idList)
         self.setLayout(layout)
         
+    def getID(self):
+        id = int(self.lineEdit.text())
+        return id
+        

@@ -14,13 +14,11 @@ class ValueSelectorWidget(QGroupBox):
     def __init__(self, parent=None):
         super(ValueSelectorWidget, self).__init__()
         self.parent = parent
-        self.__selectedCategory = ""
-        self.__selectedAttribute = ""
         
         self.layout = QVBoxLayout()
         self.setTitle('3.Select Value')
         self.valueTreeWidget = QTreeWidget()
-        self.valueTreeWidget.itemSelectionChanged.connect(self.selectionChanged)
+#         self.valueTreeWidget.itemSelectionChanged.connect(self.selectionChanged)
         self.buildTree()
         self.layout.addWidget(self.valueTreeWidget)
         self.setLayout(self.layout)
@@ -38,13 +36,31 @@ class ValueSelectorWidget(QGroupBox):
                 attribute.setText(0, att)
 #                 attBtn = QRadioButton(att)
 #                 category.addChild(attBtn)
-
-    def selectionChanged(self):
-        '''
-            is called when the selection of the tree view is changed
-            changes the value of the selected
-        '''
-        # TODO ...
+            
+    def getAttribute(self):
+        currentItem = self.valueTreeWidget.currentItem()
+        if currentItem.childCount() == 0: # selctedItem is a attribute
+            return currentItem.text(0)
+        else: # selected Item is not an attribute
+            return ""
+    
+    def getCategory(self):
+        currentItem = self.valueTreeWidget.currentItem()
+        if currentItem.childCount() == 0: # selctedItem is a attribute
+            return currentItem.parent().text(0)
+        else: # selected Item is not an attribute
+            return ""
+        
+    def getCatAndAtt(self):
+        currentItem = self.valueTreeWidget.currentItem()
+        if currentItem.childCount() == 0: # selctedItem is a attribute
+            selectedAttribute = currentItem.text(0)
+            selectedCategory = currentItem.parent().text(0)
+        else: # selected Item is not an attribute
+            selectedAttribute = ""
+            selectedCategory = ""
+        return { 'category' : selectedCategory, 
+                'attribute' : selectedAttribute }
         
                 
 

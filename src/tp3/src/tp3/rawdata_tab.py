@@ -19,7 +19,7 @@ class RawDataTab(QWidget):
         self.parent = parent
         self.layout = QGridLayout()
     
-        self.selectedBag = 0
+        self.selectedBag = 2
         self.selectedValue = ('', '') # contains value as a tupel like ('<message>', '<value>')      
         
         # init the widgets
@@ -50,10 +50,10 @@ class RawDataTab(QWidget):
         return bagSelector
     
     def btn1Clicked(self):
-        self.selectedBag = 1
+        self.selectedBag = 0
         
     def btn2Clicked(self):
-        self.selectedBag = 2
+        self.selectedBag = 1
               
         
         
