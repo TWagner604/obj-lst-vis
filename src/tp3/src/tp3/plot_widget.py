@@ -37,8 +37,16 @@ class PlotWidget(QWidget):
     def plot(self, plotData):    
         t = plotData[0]
         values = plotData[1]
-        # self.ax.set_xlim([np.min(t), np.max(t)])
         self.ax.plot(t, values)
+        self.ax._set_label('bag1.obj1.geometric.x')
+        self.ax.set_ylabel('value [m]')
+        self.ax.set_xlabel('time [s]')
+        
+        # TODO: Unterscheidung bag1 oder bag2 -> durchgezogen oder dotted
+        # TODO: Unterscheidung objid -> Farbe
+        # TODO: legende aghängig von attribute machen
+        
+        self.ax.grid()
         self.ax.figure.canvas.draw()
         
     
